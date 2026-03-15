@@ -1,8 +1,8 @@
-﻿#### Publications / 论文
+﻿#### 论文 / Publications
 
-- Fuxiao Zhang, Yanjun Lu, Hai Zhu, Jutong Ding (2024). Comparative Analysis of Structure Performance of PDC Cutter Tooth Surface and Interface Matching Pair / PDC切削齿齿面与界面匹配结构性能对比分析. Journal of Theoretical and Applied Mechanics, 62(1), 103–115. [[Paper]](https://doi.org/10.15632/jtam-pl/174733)
+- PDC切削齿齿面与界面匹配结构性能对比分析 / Comparative Analysis of Structure Performance of PDC Cutter Tooth Surface and Interface Matching Pair. Journal of Theoretical and Applied Mechanics, 62(1), 103–115, 2024. [[论文 / Paper]](https://doi.org/10.15632/jtam-pl/174733)
 
-#### Awards / 奖项
+#### 奖项 / Awards
 
 - 中国大学生机械工程创新创意大赛 全国二等奖（竞赛负责人）  
   National Second Prize, China College Students Mechanical Engineering Innovation & Creativity Competition (Team Lead), 2023.8
@@ -15,7 +15,7 @@
 - 高校智能机器人大赛 四川省三等奖  
   Third Prize, University Intelligent Robot Competition (Sichuan Province), 2023.8
 
-#### Patents / 专利
+#### 专利 / Patents
 
 - 一种基于 ABAQUS 的 PDC 烧结合成 PDC 切削齿的热力耦合仿真方法
   An ABAQUS-Based Thermo-Mechanical Coupling Simulation Method for PDC Sintering into PDC Cutting Teeth  
