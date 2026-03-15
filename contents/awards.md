@@ -8,8 +8,16 @@
 
 #### Patents / 专利
 
-- 《一种基于ABAQUS的PDC烧结合成PDC切削齿的热力耦合仿真方法》/ An ABAQUS-Based Thermo-Mechanical Coupling Simulation Method for PDC Sintering into PDC Cutting Teeth — 发明专利 / Invention Patent
-- 《一种基于ABAQUS的PDC钻头齿面-界面切削齿热力耦合仿真方法》/ An ABAQUS-Based Thermo-Mechanical Coupling Simulation Method for PDC Drill Bit Tooth Surface–Interface Cutting Teeth — 发明专利 / Invention Patent
-- 《一种聚晶金刚石烧结过程的本构模型逆向识别方法及系统》/ An Inverse Identification Method and System for the Constitutive Model of Polycrystalline Diamond Sintering Process — 发明专利 / Invention Patent
-- 《一种环形书柜图书提取装置》/ An Annular Bookshelf Book Retrieval Device — 实用新型专利 / Utility Model Patent
+- **一种基于 ABAQUS 的 PDC 烧结合成 PDC 切削齿的热力耦合仿真方法**  
+  An ABAQUS-Based Thermo-Mechanical Coupling Simulation Method for PDC Sintering into PDC Cutting Teeth  
+  发明专利 / Invention Patent
+- **一种基于 ABAQUS 的 PDC 钻头齿面 - 界面切削齿热力耦合仿真方法**  
+  An ABAQUS-Based Thermo-Mechanical Coupling Simulation Method for PDC Drill Bit Tooth Surface–Interface Cutting Teeth  
+  发明专利 / Invention Patent
+- **一种聚晶金刚石烧结过程的本构模型逆向识别方法及系统**  
+  An Inverse Identification Method and System for the Constitutive Model of Polycrystalline Diamond Sintering Process  
+  发明专利 / Invention Patent
+- **一种环形书柜图书提取装置**  
+  An Annular Bookshelf Book Retrieval Device  
+  实用新型专利 / Utility Model Patent
 
