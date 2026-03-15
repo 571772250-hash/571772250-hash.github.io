@@ -9,7 +9,7 @@
 - 高校智能机器人大赛 四川省二等奖  
   Second Prize, University Intelligent Robot Competition (Sichuan Province), 2022.8
 - 高校智能机器人大赛 四川省三等奖  
-  Third Prize, University Intelligent Robot Competition (Sichuan Province)
+  Third Prize, University Intelligent Robot Competition (Sichuan Province), 2023.8
 
 #### Patents / 专利
 
