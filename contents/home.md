@@ -6,10 +6,9 @@ Postgraduate @ Jiangnan University | Research: Humanoid Robots & Dexterous Hands
 #### 联系方式 / Contact
 Email: 571772250@qq.com
 
-#### Resume[.pdf](../static/assets/files/resume.pdf)
-
 #### 简介 / About
 Name: 丁鞠桐 (Jutong Ding)
+Resume[.pdf](../static/assets/files/resume.pdf)
 
 #### 教育背景 / Education
 - 江南大学机械工程学院 机械工程，硕士在读（2025-） / M.E. in Mechanical Engineering, School of Mechanical Engineering, Jiangnan University (2025– )
