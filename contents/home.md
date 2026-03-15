@@ -13,6 +13,6 @@ Name: 丁鞠桐 (Jutong Ding)
 - 江南大学机械工程学院 机械工程，硕士在读（2025-） / M.E. in Mechanical Engineering, School of Mechanical Engineering, Jiangnan University (2025– )
 - 西南石油大学机电工程学院 机械设计制造及其自动化，本科（2021-2025） / B.E. in Mechanical Design, Manufacturing and Automation, School of Electromechanical Engineering, Southwest Petroleum University (2021–2025)
 
-#### 研究兴趣 / Research Interests
+#### 研究方向 / Research Interests
 - 人形机器人与灵巧手（硕士） / Humanoid Robots & Dexterous Hands (M.E.)
 - 石油钻具（本科） / Petroleum Drilling Tools (B.E.)
