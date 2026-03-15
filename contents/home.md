@@ -1,4 +1,4 @@
-﻿﻿﻿[![GitHub](https://img.shields.io/badge/GitHub-571772250--hash-181717?logo=github)](https://github.com/571772250-hash) [![bilibili](https://img.shields.io/badge/bilibili-556894296-ff69b4?logo=bilibili)](https://space.bilibili.com/556894296)
+﻿﻿﻿﻿﻿[![GitHub](https://img.shields.io/badge/GitHub-571772250--hash-181717?logo=github)](https://github.com/571772250-hash) [![bilibili](https://img.shields.io/badge/bilibili-556894296-ff69b4?logo=bilibili)](https://space.bilibili.com/556894296) [![Douyin](https://img.shields.io/badge/Douyin-抖音-red)](https://v.douyin.com/m2Inkk7OSB0/)
 
 江南大学在读硕士 | 研究方向：人形机器人与灵巧手  
 Postgraduate @ Jiangnan University | Research: Humanoid Robots & Dexterous Hands
