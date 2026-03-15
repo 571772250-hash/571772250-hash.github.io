@@ -1,4 +1,4 @@
-﻿#### 论文 / Publications
+﻿﻿﻿#### 论文 / Publications
 
 - PDC切削齿齿面与界面匹配结构性能对比分析 / Comparative Analysis of Structure Performance of PDC Cutter Tooth Surface and Interface Matching Pair. Journal of Theoretical and Applied Mechanics, 62(1), 103–115, 2024. [[论文 / Paper]](https://doi.org/10.15632/jtam-pl/174733)
 
@@ -29,4 +29,13 @@
 - 一种环形书柜图书提取装置  
   An Annular Bookshelf Book Retrieval Device  
   实用新型专利 / Utility Model Patent
+
+#### 技能 / Skills
+
+- 建模（AutoCAD & SolidWorks）  
+  Modeling (AutoCAD & SolidWorks)
+- 仿真（ABAQUS）  
+  Simulation (ABAQUS)
+- 机器人控制与仿真（ROS2 & URDF & Gazebo）  
+  Robot Control and Simulation (ROS2 & URDF & Gazebo)
 
