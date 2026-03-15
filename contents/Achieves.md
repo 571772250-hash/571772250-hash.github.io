@@ -33,8 +33,8 @@
 #### 技能 / Skills
 
 - 建模（AutoCAD & SolidWorks）  
-  Modeling (AutoCAD & SolidWorks)
+  Modeling
 - 仿真（ABAQUS）  
-  Simulation (ABAQUS)
+  Simulation
 - 机器人控制与仿真（ROS2 & URDF & Gazebo）  
-  Robot Control and Simulation (ROS2 & URDF & Gazebo)
+  Robot Control and Simulation 
