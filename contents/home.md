@@ -2,7 +2,7 @@
 
 #### 简介 / About
 Name: 丁鞠桐 (Jutong Ding)
-Resume[.pdf](../static/assets/files/resume.pdf)
+[Resume.pdf](../static/assets/files/resume.pdf)
 江南大学在读硕士 | 研究方向：人形机器人与灵巧手  
 Postgraduate @ Jiangnan University | Research: Humanoid Robots & Dexterous Hands
 
