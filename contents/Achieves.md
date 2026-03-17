@@ -43,4 +43,4 @@
 - 机器人控制与仿真（ROS2 & URDF & Gazebo）  
   Robot Control and Simulation
 - 工业渲染（KeyShot）  
-  Industrial Rendering (KeyShot)
+  Industrial Rendering
