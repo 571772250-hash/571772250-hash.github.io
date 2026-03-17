@@ -42,7 +42,20 @@ function getAchievesMeta(titleText) {
     }
 }
 
-function createRevealObserver() {
+function hideEmptySectionTitle(id) {
+    const title = document.getElementById(id)
+    if (!title) {
+        return
+    }
+
+    if (!title.textContent.trim()) {
+        title.classList.add('is-empty')
+    } else {
+        title.classList.remove('is-empty')
+    }
+}
+
+function createSectionRevealObserver() {
     if (!('IntersectionObserver' in window)) {
         document.querySelectorAll(revealSelector).forEach(element => {
             element.classList.add('revealed')
@@ -56,16 +69,20 @@ function createRevealObserver() {
                 return
             }
 
-            entry.target.classList.add('revealed')
+            const elements = entry.target.querySelectorAll(revealSelector)
+            elements.forEach(element => {
+                element.classList.add('revealed')
+            })
+
             observer.unobserve(entry.target)
         })
     }, {
-        threshold: 0.18,
-        rootMargin: '0px 0px -10% 0px'
+        threshold: 0.12,
+        rootMargin: '0px 0px -18% 0px'
     })
 }
 
-function observeRevealElements(observer, scope = document) {
+function prepareRevealElements(scope = document) {
     const elements = scope.querySelectorAll(revealSelector)
     elements.forEach((element, index) => {
         if (element.dataset.revealReady === 'true') {
@@ -74,11 +91,25 @@ function observeRevealElements(observer, scope = document) {
 
         element.dataset.revealReady = 'true'
         element.style.setProperty('--reveal-delay', `${Math.min(index * 90, 520)}ms`)
+    })
+}
+
+function registerRevealSections(observer) {
+    const sections = document.querySelectorAll('#home, #Achieves')
+
+    sections.forEach(section => {
+        if (section.dataset.revealObserved === 'true') {
+            return
+        }
+
+        section.dataset.revealObserved = 'true'
 
         if (observer) {
-            observer.observe(element)
+            observer.observe(section)
         } else {
-            element.classList.add('revealed')
+            section.querySelectorAll(revealSelector).forEach(element => {
+                element.classList.add('revealed')
+            })
         }
     })
 }
@@ -167,7 +198,7 @@ function enhanceAchievesSection() {
 }
 
 window.addEventListener('DOMContentLoaded', event => {
-    const revealObserver = createRevealObserver()
+    const revealObserver = createSectionRevealObserver()
 
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
@@ -205,7 +236,10 @@ window.addEventListener('DOMContentLoaded', event => {
                 }
 
             })
-            observeRevealElements(revealObserver)
+            hideEmptySectionTitle('home-subtitle')
+            hideEmptySectionTitle('Achieves-subtitle')
+            prepareRevealElements()
+            registerRevealSections(revealObserver)
         })
         .catch(error => console.log(error));
 
@@ -224,12 +258,16 @@ window.addEventListener('DOMContentLoaded', event => {
                     enhanceAchievesSection()
                 }
 
-                observeRevealElements(revealObserver, mountPoint.parentElement)
+                prepareRevealElements(mountPoint.parentElement)
+                registerRevealSections(revealObserver)
                 MathJax.typeset()
             })
             .catch(error => console.log(error));
     })
 
-    observeRevealElements(revealObserver)
+    hideEmptySectionTitle('home-subtitle')
+    hideEmptySectionTitle('Achieves-subtitle')
+    prepareRevealElements()
+    registerRevealSections(revealObserver)
 }); 
 
