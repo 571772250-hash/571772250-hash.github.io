@@ -5,6 +5,43 @@ const config_file = 'config.yml'
 const section_names = ['home', 'Achieves']
 const revealSelector = 'section header h2, .main-body > *, .achieves-group, .achieves-item'
 
+function getAchievesMeta(titleText) {
+    const title = titleText.toLowerCase()
+
+    if (title.includes('论文') || title.includes('publication')) {
+        return {
+            groupIcon: 'bi-journal-richtext',
+            itemIcon: 'bi-file-earmark-text'
+        }
+    }
+
+    if (title.includes('奖项') || title.includes('award')) {
+        return {
+            groupIcon: 'bi-trophy-fill',
+            itemIcon: 'bi-award-fill'
+        }
+    }
+
+    if (title.includes('专利') || title.includes('patent')) {
+        return {
+            groupIcon: 'bi-lightbulb-fill',
+            itemIcon: 'bi-patch-check-fill'
+        }
+    }
+
+    if (title.includes('技能') || title.includes('skill')) {
+        return {
+            groupIcon: 'bi-tools',
+            itemIcon: 'bi-stars'
+        }
+    }
+
+    return {
+        groupIcon: 'bi-bookmark-star-fill',
+        itemIcon: 'bi-chevron-right'
+    }
+}
+
 function createRevealObserver() {
     if (!('IntersectionObserver' in window)) {
         document.querySelectorAll(revealSelector).forEach(element => {
@@ -67,12 +104,14 @@ function enhanceAchievesSection() {
 
     nodes.forEach(node => {
         if (node.tagName === 'H4') {
+            const groupMeta = getAchievesMeta(node.textContent)
             currentGroup = document.createElement('section')
             currentGroup.className = 'achieves-group'
+            currentGroup.dataset.itemIcon = groupMeta.itemIcon
 
             const title = document.createElement('div')
             title.className = 'achieves-group-title'
-            title.innerHTML = node.innerHTML
+            title.innerHTML = `<i class="bi ${groupMeta.groupIcon}" aria-hidden="true"></i><span>${node.innerHTML}</span>`
             currentGroup.appendChild(title)
             fragment.appendChild(currentGroup)
             return
@@ -95,6 +134,11 @@ function enhanceAchievesSection() {
                 const card = document.createElement('article')
                 card.className = 'achieves-item'
                 card.style.setProperty('--reveal-delay', `${Math.min(index * 110, 660)}ms`)
+
+                const itemIcon = document.createElement('span')
+                itemIcon.className = 'achieves-item-icon'
+                itemIcon.innerHTML = `<i class="bi ${currentGroup.dataset.itemIcon || 'bi-chevron-right'}" aria-hidden="true"></i>`
+                card.appendChild(itemIcon)
 
                 const year = extractAchievementYear(item.textContent)
                 if (year) {

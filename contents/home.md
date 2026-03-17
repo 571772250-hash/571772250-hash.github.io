@@ -1,4 +1,17 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿[![GitHub](https://img.shields.io/badge/GitHub-571772250--hash-181717?logo=github)](https://github.com/571772250-hash) [![bilibili](https://img.shields.io/badge/bilibili-桐仔-ff69b4?logo=bilibili)](https://space.bilibili.com/556894296) [![Douyin](https://img.shields.io/badge/Douyin-桐仔-ff0000?logo=douyin)](https://v.douyin.com/m2Inkk7OSB0/)
+﻿﻿﻿﻿﻿﻿﻿﻿﻿<div class="social-links">
+  <a class="social-link social-link-github" href="https://github.com/571772250-hash" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-github"></i>
+    <span>GitHub</span>
+  </a>
+  <a class="social-link social-link-bilibili" href="https://space.bilibili.com/556894296" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-play-btn-fill"></i>
+    <span>Bilibili</span>
+  </a>
+  <a class="social-link social-link-douyin" href="https://v.douyin.com/m2Inkk7OSB0/" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-music-note-beamed"></i>
+    <span>Douyin</span>
+  </a>
+</div>
 
 #### 简介 / About
 丁鞠桐 (Jutong Ding)
