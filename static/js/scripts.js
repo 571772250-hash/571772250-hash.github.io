@@ -55,6 +55,19 @@ function hideEmptySectionTitle(id) {
     }
 }
 
+function revealSection(section) {
+    section.dataset.revealTriggered = 'true'
+    section.querySelectorAll(revealSelector).forEach(element => {
+        element.classList.add('revealed')
+    })
+}
+
+function isSectionInViewport(section) {
+    const rect = section.getBoundingClientRect()
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+    return rect.top < viewportHeight * 0.82 && rect.bottom > 0
+}
+
 function createSectionRevealObserver() {
     if (!('IntersectionObserver' in window)) {
         document.querySelectorAll(revealSelector).forEach(element => {
@@ -69,11 +82,7 @@ function createSectionRevealObserver() {
                 return
             }
 
-            const elements = entry.target.querySelectorAll(revealSelector)
-            elements.forEach(element => {
-                element.classList.add('revealed')
-            })
-
+            revealSection(entry.target)
             observer.unobserve(entry.target)
         })
     }, {
@@ -98,6 +107,11 @@ function registerRevealSections(observer) {
     const sections = document.querySelectorAll('#home, #Achieves')
 
     sections.forEach(section => {
+        if (section.dataset.revealTriggered === 'true' || isSectionInViewport(section)) {
+            revealSection(section)
+            return
+        }
+
         if (section.dataset.revealObserved === 'true') {
             return
         }
