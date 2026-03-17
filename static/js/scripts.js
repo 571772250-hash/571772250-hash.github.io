@@ -3,7 +3,6 @@
 const content_dir = 'contents/'
 const config_file = 'config.yml'
 const section_names = ['home', 'Achieves']
-const revealSelector = 'section header h2, .main-body > *, .achieves-group, .achieves-item'
 
 function getAchievesMeta(titleText) {
     const title = titleText.toLowerCase()
@@ -11,34 +10,34 @@ function getAchievesMeta(titleText) {
     if (title.includes('论文') || title.includes('publication')) {
         return {
             groupIcon: 'bi-journal-richtext',
-            itemIcon: 'bi-file-earmark-text'
+            groupType: 'publication'
         }
     }
 
     if (title.includes('奖项') || title.includes('award')) {
         return {
             groupIcon: 'bi-trophy-fill',
-            itemIcon: 'bi-award-fill'
+            groupType: 'award'
         }
     }
 
     if (title.includes('专利') || title.includes('patent')) {
         return {
             groupIcon: 'bi-lightbulb-fill',
-            itemIcon: 'bi-patch-check-fill'
+            groupType: 'patent'
         }
     }
 
     if (title.includes('技能') || title.includes('skill')) {
         return {
             groupIcon: 'bi-tools',
-            itemIcon: 'bi-stars'
+            groupType: 'skill'
         }
     }
 
     return {
         groupIcon: 'bi-bookmark-star-fill',
-        itemIcon: 'bi-chevron-right'
+        groupType: 'default'
     }
 }
 
@@ -55,82 +54,75 @@ function hideEmptySectionTitle(id) {
     }
 }
 
-function revealSection(section) {
-    section.dataset.revealTriggered = 'true'
-    section.querySelectorAll(revealSelector).forEach(element => {
-        element.classList.add('revealed')
-    })
-}
-
-function isSectionInViewport(section) {
-    const rect = section.getBoundingClientRect()
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight
-    return rect.top < viewportHeight * 0.82 && rect.bottom > 0
-}
-
-function createSectionRevealObserver() {
-    if (!('IntersectionObserver' in window)) {
-        document.querySelectorAll(revealSelector).forEach(element => {
-            element.classList.add('revealed')
-        })
-        return null
+function extractAchievementYear(text) {
+    const rangeMatch = text.match(/\b(20\d{2}\s*[-–]\s*20\d{2})\b/)
+    if (rangeMatch) {
+        return rangeMatch[1].replace(/\s*/g, '')
     }
 
-    return new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                return
-            }
-
-            revealSection(entry.target)
-            observer.unobserve(entry.target)
-        })
-    }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -18% 0px'
-    })
-}
-
-function prepareRevealElements(scope = document) {
-    const elements = scope.querySelectorAll(revealSelector)
-    elements.forEach((element, index) => {
-        if (element.dataset.revealReady === 'true') {
-            return
-        }
-
-        element.dataset.revealReady = 'true'
-        element.style.setProperty('--reveal-delay', `${Math.min(index * 90, 520)}ms`)
-    })
-}
-
-function registerRevealSections(observer) {
-    const sections = document.querySelectorAll('#home, #Achieves')
-
-    sections.forEach(section => {
-        if (section.dataset.revealTriggered === 'true' || isSectionInViewport(section)) {
-            revealSection(section)
-            return
-        }
-
-        if (section.dataset.revealObserved === 'true') {
-            return
-        }
-
-        section.dataset.revealObserved = 'true'
-
-        if (observer) {
-            observer.observe(section)
-        } else {
-            section.querySelectorAll(revealSelector).forEach(element => {
-                element.classList.add('revealed')
-            })
-        }
-    })
-}
-
-function extractAchievementYear(text) {
     const match = text.match(/\b(20\d{2})(?:[./-]\d{1,2})?\b/)
     return match ? match[1] : ''
+}
+
+function getAchievementItemIcon(groupType, text, index) {
+    const lowerText = text.toLowerCase()
+
+    if (groupType === 'publication') {
+        if (lowerText.includes('journal')) {
+            return 'bi-journal-text'
+        }
+        if (lowerText.includes('doi') || lowerText.includes('paper')) {
+            return 'bi-file-earmark-medical'
+        }
+        return 'bi-file-earmark-text'
+    }
+
+    if (groupType === 'award') {
+        return 'bi-award-fill'
+    }
+
+    if (groupType === 'patent') {
+        if (lowerText.includes('system') || lowerText.includes('系统')) {
+            return 'bi-diagram-3-fill'
+        }
+        if (lowerText.includes('bookshelf') || lowerText.includes('书柜')) {
+            return 'bi-bookshelf'
+        }
+        if (lowerText.includes('abaqus')) {
+            return 'bi-bounding-box-circles'
+        }
+        if (lowerText.includes('仿真') || lowerText.includes('simulation')) {
+            return 'bi-boxes'
+        }
+        if (lowerText.includes('发明专利') || lowerText.includes('invention patent')) {
+            return 'bi-lightbulb'
+        }
+        if (lowerText.includes('实用新型') || lowerText.includes('utility model')) {
+            return 'bi-wrench-adjustable-circle'
+        }
+        return ['bi-lightbulb', 'bi-patch-check', 'bi-diagram-3', 'bi-box'][index % 4]
+    }
+
+    if (groupType === 'skill') {
+        if (lowerText.includes('autocad') || lowerText.includes('solidworks') || lowerText.includes('建模')) {
+            return 'bi-pencil-square'
+        }
+        if (lowerText.includes('abaqus') || lowerText.includes('仿真')) {
+            return 'bi-gear-fill'
+        }
+        if (lowerText.includes('ros2') || lowerText.includes('robot')) {
+            return 'bi-robot'
+        }
+        if (lowerText.includes('gazebo') || lowerText.includes('urdf')) {
+            return 'bi-box'
+        }
+        if (lowerText.includes('keyshot') || lowerText.includes('渲染')) {
+            return 'bi-palette-fill'
+        }
+        return ['bi-tools', 'bi-gear', 'bi-cpu', 'bi-stars'][index % 4]
+    }
+
+    return 'bi-chevron-right'
 }
 
 function enhanceAchievesSection() {
@@ -152,7 +144,7 @@ function enhanceAchievesSection() {
             const groupMeta = getAchievesMeta(node.textContent)
             currentGroup = document.createElement('section')
             currentGroup.className = 'achieves-group'
-            currentGroup.dataset.itemIcon = groupMeta.itemIcon
+            currentGroup.dataset.groupType = groupMeta.groupType
 
             const title = document.createElement('div')
             title.className = 'achieves-group-title'
@@ -178,11 +170,10 @@ function enhanceAchievesSection() {
 
                 const card = document.createElement('article')
                 card.className = 'achieves-item'
-                card.style.setProperty('--reveal-delay', `${Math.min(index * 110, 660)}ms`)
 
                 const itemIcon = document.createElement('span')
                 itemIcon.className = 'achieves-item-icon'
-                itemIcon.innerHTML = `<i class="bi ${currentGroup.dataset.itemIcon || 'bi-chevron-right'}" aria-hidden="true"></i>`
+                itemIcon.innerHTML = `<i class="bi ${getAchievementItemIcon(currentGroup.dataset.groupType || 'default', item.textContent, index)}" aria-hidden="true"></i>`
                 card.appendChild(itemIcon)
 
                 const year = extractAchievementYear(item.textContent)
@@ -212,8 +203,6 @@ function enhanceAchievesSection() {
 }
 
 window.addEventListener('DOMContentLoaded', event => {
-    const revealObserver = createSectionRevealObserver()
-
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
@@ -252,8 +241,6 @@ window.addEventListener('DOMContentLoaded', event => {
             })
             hideEmptySectionTitle('home-subtitle')
             hideEmptySectionTitle('Achieves-subtitle')
-            prepareRevealElements()
-            registerRevealSections(revealObserver)
         })
         .catch(error => console.log(error));
 
@@ -272,8 +259,6 @@ window.addEventListener('DOMContentLoaded', event => {
                     enhanceAchievesSection()
                 }
 
-                prepareRevealElements(mountPoint.parentElement)
-                registerRevealSections(revealObserver)
                 MathJax.typeset()
             })
             .catch(error => console.log(error));
@@ -281,7 +266,5 @@ window.addEventListener('DOMContentLoaded', event => {
 
     hideEmptySectionTitle('home-subtitle')
     hideEmptySectionTitle('Achieves-subtitle')
-    prepareRevealElements()
-    registerRevealSections(revealObserver)
 }); 
 
