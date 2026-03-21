@@ -2,7 +2,8 @@
 
 const content_dir = 'contents/'
 const config_file = 'config.yml'
-const section_names = ['home', 'Achieves']
+const section_names = ['home', 'Achieves', 'Skills']
+let revealObserver = null
 
 function hideEmptySectionTitle(id) {
     const title = document.getElementById(id)
@@ -17,7 +18,72 @@ function hideEmptySectionTitle(id) {
     }
 }
 
+function initRevealObserver() {
+    if (!('IntersectionObserver' in window) || revealObserver) {
+        return
+    }
+
+    revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                return
+            }
+
+            entry.target.classList.add('is-visible')
+            revealObserver.unobserve(entry.target)
+        })
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -8% 0px'
+    })
+}
+
+function applyRevealStyle(element, index, type) {
+    element.classList.add('reveal-on-scroll')
+
+    if (type === 'title') {
+        element.classList.add('reveal-title')
+        element.style.setProperty('--reveal-delay', `${Math.min(index * 60, 160)}ms`)
+        return
+    }
+
+    element.classList.add('reveal-content')
+    element.style.setProperty('--reveal-delay', `${Math.min(index * 85, 320)}ms`)
+
+    if (element.tagName === 'LI') {
+        element.classList.add('reveal-list-item')
+    }
+}
+
+function registerRevealElements(root = document) {
+    const groups = [
+        { selector: '.top-section .top-section-content', type: 'title' },
+        { selector: 'section header', type: 'title' },
+        { selector: 'section .main-body > *', type: 'content' }
+    ]
+
+    groups.forEach(({ selector, type }) => {
+        root.querySelectorAll(selector).forEach((element, index) => {
+            if (element.classList.contains('reveal-on-scroll')) {
+                return
+            }
+
+            applyRevealStyle(element, index, type)
+
+            if (!revealObserver) {
+                element.classList.add('is-visible')
+                return
+            }
+
+            revealObserver.observe(element)
+        })
+    })
+}
+
 window.addEventListener('DOMContentLoaded', event => {
+    initRevealObserver()
+    registerRevealElements()
+
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
@@ -56,6 +122,7 @@ window.addEventListener('DOMContentLoaded', event => {
             })
             hideEmptySectionTitle('home-subtitle')
             hideEmptySectionTitle('Achieves-subtitle')
+            hideEmptySectionTitle('Skills-subtitle')
         })
         .catch(error => console.log(error));
 
@@ -69,6 +136,7 @@ window.addEventListener('DOMContentLoaded', event => {
                 const html = marked.parse(markdown);
                 const mountPoint = document.getElementById(name + '-md')
                 mountPoint.innerHTML = html
+                registerRevealElements(document)
 
                 MathJax.typeset()
             })
@@ -77,5 +145,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
     hideEmptySectionTitle('home-subtitle')
     hideEmptySectionTitle('Achieves-subtitle')
+    hideEmptySectionTitle('Skills-subtitle')
 }); 
 
